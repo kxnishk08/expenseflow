@@ -1,0 +1,10 @@
+:root{font-family:system-ui,sans-serif;color:#17252d;background:#f4f6f5;line-height:1.6}
+*{box-sizing:border-box}body{margin:0}main{max-width:900px;margin:auto;padding:48px 24px}
+header{border-bottom:1px solid #ccd6d1;padding-bottom:24px}.eyebrow{color:#246855;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+h1{font-size:clamp(32px,6vw,48px);margin:10px 0;line-height:1.1}h2{font-size:21px}
+.lead{font-size:18px;max-width:720px}section{margin:28px 0}
+button,select{font:inherit;border-radius:6px;padding:10px 16px}button{background:#14634b;color:white;border:0;cursor:pointer;font-weight:650}
+button:disabled{opacity:.55;cursor:wait}select{border:1px solid #adbdb5;background:white;margin:0 12px 12px 0}
+a{color:#14634b}#status{min-height:26px}details{background:white;border:1px solid #d7dfdb;border-radius:6px;margin:8px 0;padding:12px}
+summary{cursor:pointer;font:14px ui-monospace,monospace;overflow-wrap:anywhere}pre{font:13px/1.6 ui-monospace,monospace;overflow:auto;max-height:460px;background:#f6f8f7;padding:12px}
+#accounts p{font:13px ui-monospace,monospace;overflow-wrap:anywhere}.note{color:#50635a;font-size:14px}footer{border-top:1px solid #ccd6d1;padding-top:16px;margin-top:36px}

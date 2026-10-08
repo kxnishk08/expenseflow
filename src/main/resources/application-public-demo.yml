@@ -1,0 +1,15 @@
+# Hosted synthetic demo. Do not combine with dev (which disables Secure cookies).
+server:
+  forward-headers-strategy: framework
+  servlet:
+    session:
+      cookie:
+        secure: true
+spring:
+  datasource:
+    hikari:
+      maximum-pool-size: 3
+      minimum-idle: 0
+      idle-timeout: 60000
+      keepalive-time: 0
+      connection-timeout: 30000

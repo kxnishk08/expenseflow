@@ -4,7 +4,11 @@ Java backend portfolio project for INR expense drafts, policy validation, assign
 
 Employees own editable drafts. Submission freezes title, items, total, policy rules and assigned approver. Managers approve, return or reject their assigned submissions. Finance accepts or returns approved submissions, then records one unique reimbursement reference. Returns can be reopened and resubmitted without replacing history. Withdrawn, rejected and reimbursed reports are terminal.
 
-Java 21, Spring Boot 4.1.1, Spring MVC, Security sessions, Spring Data JPA/Hibernate, PostgreSQL 17.6, Flyway, Maven 3.9.9, JUnit/AssertJ, Testcontainers 2.0.5 and Actuator. Boot manages framework versions. There is one process and one database, independent of StockHold. No frontend, receipt uploads, external payments, public registration or personnel management API.
+Java 21, Spring Boot 4.1.1, Spring MVC, Security sessions, Spring Data JPA/Hibernate, PostgreSQL 17.6, Flyway, Maven 3.9.9, JUnit/AssertJ, Testcontainers 2.0.5 and Actuator. Boot manages framework versions. There is one process and one database, independent of StockHold. A small browser page demonstrates the real API workflows. No receipt uploads, external payments, public registration or personnel management API.
+
+## Recruiter demo deployment
+
+[Free hosting guide](docs/deployment.md): Render + Neon, with one small browser demo page served by this backend. The hosted `public-demo` profile provisions disposable public accounts while retaining Secure cookies. Deployment still needs your GitHub/Render/Neon accounts and live verification.
 
 ## Run locally
 

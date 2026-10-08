@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: expenseflow
+    runtime: docker
+    plan: free
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: public-demo
+      - key: DEMO_PROVISION
+        value: "true"
+      - key: JAVA_TOOL_OPTIONS
+        value: "-Xms64m -Xmx256m -XX:MaxMetaspaceSize=160m -XX:+UseSerialGC"
+      - key: DB_URL
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DEMO_ALICE_PASSWORD
+        sync: false
+      - key: DEMO_BOB_PASSWORD
+        sync: false
+      - key: DEMO_M1_PASSWORD
+        sync: false
+      - key: DEMO_M2_PASSWORD
+        sync: false
+      - key: DEMO_F1_PASSWORD
+        sync: false

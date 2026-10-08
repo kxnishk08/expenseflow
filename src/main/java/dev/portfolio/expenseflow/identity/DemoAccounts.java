@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 @Component
-@Profile("dev")
+@Profile({"dev", "public-demo"})
 public class DemoAccounts implements ApplicationRunner {
   private final AccountRepository accounts;
   private final PasswordEncoder passwords;

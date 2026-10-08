@@ -48,7 +48,15 @@ public class SecurityConfig {
         .requestCache(c -> c.disable())
         .authorizeHttpRequests(
             c ->
-                c.requestMatchers("/api/auth/csrf", "/api/auth/login", "/actuator/health")
+                c.requestMatchers(
+                        "/",
+                        "/index.html",
+                        "/demo.js",
+                        "/demo.css",
+                        "/demo/config",
+                        "/api/auth/csrf",
+                        "/api/auth/login",
+                        "/actuator/health")
                     .permitAll()
                     .requestMatchers("/api/manager/**")
                     .hasRole("MANAGER")
