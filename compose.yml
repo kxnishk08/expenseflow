@@ -1,0 +1,35 @@
+name: expenseflow
+services:
+  db:
+    image: postgres:17.6-alpine
+    environment:
+      POSTGRES_DB: expenseflow
+      POSTGRES_USER: expenseflow
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in .env}
+    volumes:
+      - expenseflow_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [CMD-SHELL, "pg_isready -U expenseflow -d expenseflow"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+  app:
+    build: .
+    ports:
+      - "127.0.0.1:8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      DB_URL: jdbc:postgresql://db:5432/expenseflow
+      DB_USER: expenseflow
+      DB_PASSWORD: ${DB_PASSWORD}
+      DEMO_PROVISION: "true"
+      DEMO_ALICE_PASSWORD: ${DEMO_ALICE_PASSWORD:?Set DEMO_ALICE_PASSWORD}
+      DEMO_BOB_PASSWORD: ${DEMO_BOB_PASSWORD:?Set DEMO_BOB_PASSWORD}
+      DEMO_M1_PASSWORD: ${DEMO_M1_PASSWORD:?Set DEMO_M1_PASSWORD}
+      DEMO_M2_PASSWORD: ${DEMO_M2_PASSWORD:?Set DEMO_M2_PASSWORD}
+      DEMO_F1_PASSWORD: ${DEMO_F1_PASSWORD:?Set DEMO_F1_PASSWORD}
+volumes:
+  expenseflow_data:

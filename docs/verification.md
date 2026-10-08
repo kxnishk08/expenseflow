@@ -1,0 +1,15 @@
+# Executed verification — 9 October 2026
+
+Windows workstation, Oracle JDK 21.0.6, Maven Wrapper 3.3.4/Maven 3.9.9, Spring Boot 4.1.1, Hibernate 7.4.5.Final, Flyway 12.4.0, PostgreSQL JDBC 42.7.13, portable PostgreSQL 17.6. Testcontainers 2.0.5 is pinned for the default Docker path.
+
+Executed `.\mvnw.cmd -B -ntp verify` with TEST_DB_URL pointing to isolated `expenseflow_test` on loopback port 55417. Final result: **8 unit tests + 33 PostgreSQL integration tests, zero failures/errors/skips** (DatabaseIT 1, WorkflowIT 32). Includes actual admission-lock timeout 503/no partial draft and inactive-login/unauthenticated-logout denial. Final verify completed at 02:56:53 IST. Spring Framework 7.0.9, Security 7.1.1, Spring Data BOM 2026.0.1, Jackson 3.1.5 and JUnit Jupiter 6.0.3 are resolved through Boot management.
+
+An initial full-suite run had a test expecting nine workflow events instead of eight; corrected and reran successfully. Initial sandbox database startup failed to remain reachable; reran the isolated server outside the command sandbox and verified PostgreSQL 17.6 explicitly. The JDBC timeout surfaced as uncategorized SQL state 55P03; explicit state-based translation was added outside the failed transaction and tested in both projects. Final sessions use distinct EXPENSEFLOWSESSION/STOCKHOLDSESSION cookie names so local applications do not replace each other's cookies. Logout requires an authenticated Actor; its matcher handles both servlet and MockMvc paths.
+
+Executed `scripts/verify-demo.ps1 -PostgresBin C:\JavaDev\Codex\.local\postgres17\pgsql\bin -JavaHome C:\Program Files\Java\jdk-21`. The real HTTP workflow passed unassigned-manager 404, stale decision 409, duplicate reimbursement 409 and policy conflict 409. Created two submission revisions and recorded exactly INR 1,050.00. The finance summary showed TRAVEL 600.00 and MEALS 450.00, rather than counting the resubmission twice.
+
+Application restart preserved counts: reports 2, submissions 2, events 9 (including the separate empty policy-failure demo report's CREATED event), reimbursements 1. Actual `pg_dump`/`pg_restore` into isolated `expenseflow_restore_2215d314` preserved these counts; representative reimbursement/submission relationship returned `1050.00,2,1050.00` (amount, snapshot item count, snapshot item sum).
+
+The final packaged build was demonstrated again after the security/error fixes. It passed real HTTP and authenticated post-restart report retrieval with two snapshots; latest isolated restore `expenseflow_restore_6cc0a679` returned the same `2,2,9,1` counts and `1050.00,2,1050.00` relationship. The original spec remains unchanged; both applications have independent local Git repositories on main.
+
+The demo verifier stops its own app process and preserves isolated databases for inspection. Runtime logs, dumps and packaged JARs are ignored build outputs. No credentials are written into committed configuration. Container build/Compose execution remain **unverified** because Docker is not installed. Native real-JVM and PostgreSQL execution passed; no scale/performance claims were made.
