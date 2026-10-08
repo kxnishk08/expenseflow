@@ -29,6 +29,9 @@ class DemoProfileIT extends DatabaseSupport {
   void anonymousVisitorCanLoadDemoButProtectedApiStillRequiresLogin() throws Exception {
     mvc.perform(get("/")).andExpect(status().isOk());
     mvc.perform(get("/demo.js")).andExpect(status().isOk());
+    mvc.perform(get("/demo.html")).andExpect(status().isOk());
+    mvc.perform(get("/app.js")).andExpect(status().isOk());
+    mvc.perform(get("/app.css")).andExpect(status().isOk());
     mvc.perform(get("/api/me")).andExpect(status().isUnauthorized());
     mvc.perform(post("/api/auth/login")).andExpect(status().isForbidden());
   }

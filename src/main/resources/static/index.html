@@ -1,12 +1,10 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ExpenseFlow · Live backend demo</title><link rel="stylesheet" href="/demo.css"><script src="/demo.js" defer></script></head>
-<body><main><header><span class="eyebrow">Java 21 · Spring Boot · PostgreSQL</span><h1>ExpenseFlow</h1><p class="lead">An expense approval backend with policy checks, immutable submission snapshots, role-based review, and reimbursement tracking.</p>
-<p class="note">Free hosting sleeps when idle. The first visit may take around a minute to load.</p></header>
-<section><h2>Try the workflow</h2><p>Create a claim → submit → manager returns → employee revises → approve → finance accepts → record reimbursement. Also checks stale writes and duplicate recording.</p>
-
-<button id="run" disabled>Run demo</button><p id="status" role="status" aria-live="polite">Connecting to the demo…</p>
-<p class="note">Creates real, persistent synthetic records. These accounts are shared; concurrent visitors may affect a run. Retry after inspecting a conflict. No money moves.</p></section>
-<section><h2>API trace</h2><p class="note">Expand any request to inspect the server response. Expected HTTP 409 responses demonstrate rejected duplicate or stale operations.</p><div id="trace"></div></section>
-<section><details><summary>Public demo accounts</summary><div id="accounts"></div><p class="note">Disposable demo identities only. Do not enter personal information.</p></details></section>
-<footer class="note">One Java service and one PostgreSQL database. <a href="/actuator/health">Service health</a> · <a href="/api/auth/csrf">CSRF API</a></footer></main></body></html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light">
+<title>ExpenseFlow · Workspace</title><link rel="stylesheet" href="/app.css"><script src="/app.js" defer></script></head>
+<body>
+<aside class="sidebar"><a class="brand" id="brand" href="/" aria-label="ExpenseFlow home"></a><small>Workspace</small><nav class="nav" id="nav" aria-label="Main navigation"></nav>
+<div class="sidebar-bottom"><p><span class="live-dot"></span>Live backend demo</p><p>Synthetic data. No real payments.</p><a href="/demo.html">Guided API walkthrough ↗</a><p class="help">Free hosting may need a minute to wake up.</p></div></aside>
+<div class="workspace"><header class="topbar"><div class="breadcrumb" id="crumb"></div><div class="userbox" id="user"></div></header>
+<div id="notice" role="status" aria-live="polite"></div><main id="content"></main></div>
+<dialog id="modal" aria-labelledby="modal-title"><div class="dialog-head"><h2 id="modal-title"></h2><button class="btn ghost" data-action="close" aria-label="Close dialog">✕</button></div><div class="dialog-body"><p id="modal-error" role="alert" style="color:#b94258"></p><div id="modal-body"></div></div></dialog>
+<noscript><p style="padding:30px">Enable JavaScript to explore ExpenseFlow.</p></noscript></body></html>

@@ -8,6 +8,8 @@ Java 21, Spring Boot 4.1.1, Spring MVC, Security sessions, Spring Data JPA/Hiber
 
 ## Recruiter demo deployment
 
+The home page is now an interactive browser workspace. [Frontend guide](docs/frontend.md). It runs inside the Java service; there is no separate frontend deployment or build toolchain. The original one-click API trace demo is retained at `/demo.html`.
+
 [Free hosting guide](docs/deployment.md): Render + Neon, with one small browser demo page served by this backend. The hosted `public-demo` profile provisions disposable public accounts while retaining Secure cookies. Deployment still needs your GitHub/Render/Neon accounts and live verification.
 
 ## Run locally

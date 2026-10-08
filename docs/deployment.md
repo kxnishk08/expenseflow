@@ -43,10 +43,10 @@ Do not enable the `dev` profile on Render: it disables Secure cookies for local 
 
 Wait for Render's build and deploy to succeed. Open each supplied HTTPS URL:
 
-1. Open the home page; credentials load and the Run demo button becomes available.
-2. Run ExpenseFlow's full workflow. It must end with two submissions and INR 1,050 recorded once; expected stale/duplicate calls return 409.
-3. Run both StockHold scenarios: cancellation and fulfillment.
-4. Reload the page and run again; verify the new example succeeds.
+1. Open the home page and choose a demo role. The interactive workspace should load.
+2. In ExpenseFlow, create and submit a claim as Employee, review it as Manager, accept and record reimbursement as Finance. Inspect the employee's submission/activity history.
+3. In StockHold, add sample stock as Staff, reserve and confirm as Customer, then cancel a placed order or fulfill it as Staff.
+4. Open `/demo.html` and run the automated API walkthrough. ExpenseFlow must end with two snapshots and INR 1,050 recorded once; StockHold's cancellation and fulfillment scenarios must both pass. Reload the workspace and verify session restoration.
 5. After a deploy/restart, authenticate and retrieve a previous record from the API to confirm database persistence. App restart invalidates in-memory sessions.
 6. Check `/actuator/health` returns UP. Anonymous `/api/me` must return 401; mutation without CSRF must return 403.
 7. Put the two HTTPS demo URLs and corresponding source repository URLs in your resume/project README.
